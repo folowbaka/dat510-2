@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <top>
       <VBox prefHeight="90.0" prefWidth="600.0" spacing="5.0" BorderPane.alignment="CENTER">
@@ -62,7 +61,7 @@
                      <children>
                         <Label layoutX="137.0" layoutY="5.0" text="Bob" />
                         <TextField fx:id="bobATF" layoutX="50.0" layoutY="41.0" />
-                        <Label layoutX="23.0" layoutY="45.0" text="a" />
+                        <Label layoutX="23.0" layoutY="45.0" text="b" />
                      </children>
                   </AnchorPane>
               </items>
@@ -88,6 +87,12 @@
                   </AnchorPane>
               </items>
             </SplitPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Kab" />
+                  <TextField fx:id="kabTF" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

@@ -14,6 +14,8 @@ public class Controller {
     private TextField alicePUTF;
     @FXML
     private TextField bobPUTF;
+    @FXML
+    private TextField kabTF;
 
     private Cyclic cyclic;
 
@@ -28,11 +30,16 @@ public class Controller {
         int a=Integer.parseInt(aliceATF.getText());
         int b=Integer.parseInt(bobATF.getText());
         int p=Integer.parseInt((String)safePrimeCB.getValue());
-        this.cyclic=new Cyclic();
-        int alicePU=cyclic.calculateKeyPair(a,Cyclic.GENERATOR,p);
-        int bobPU=cyclic.calculateKeyPair(b,Cyclic.GENERATOR,p);
+        this.cyclic=new Cyclic(p);
+        int alicePU=cyclic.calculateKeyPair(a);
+        int bobPU=cyclic.calculateKeyPair(b);
         this.alicePUTF.setText(""+alicePU);
         this.bobPUTF.setText(""+bobPU);
+        int aliceSharedKey=cyclic.calculateSharedKey(bobPU,a);
+        int bobSharedKey=cyclic.calculateSharedKey(alicePU,b);
+        if(aliceSharedKey==bobSharedKey)
+            kabTF.setText(""+aliceSharedKey);
+
 
 
 
