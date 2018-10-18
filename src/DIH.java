@@ -11,6 +11,12 @@ public class DIH {
     {
         this.p=p;
     }
+
+    /**
+     * Calculate the public key
+     * @param privateKey
+     * @return
+     */
     public int calculateKeyPair(int privateKey)
     {
         BigInteger key=new BigInteger(""+GENERATOR);
@@ -18,6 +24,13 @@ public class DIH {
         key=key.mod(new BigInteger(""+this.p));
         return key.intValue();
     }
+
+    /**
+     * Calculate the shared key
+     * @param publicKey
+     * @param privateKey
+     * @return
+     */
     public int calculateSharedKey(int publicKey,int privateKey)
     {
         BigInteger key=new BigInteger(""+publicKey);

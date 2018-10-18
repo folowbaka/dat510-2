@@ -98,7 +98,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextArea fx:id="plainTextTA" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="simplifieddesisnotsecureenoughtoprovideyousufficientsecurity" wrapText="true" />
+                  <TextArea fx:id="plainTextTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="simplifieddesisnotsecureenoughtoprovideyousufficientsecurity" wrapText="true" />
                   <TextArea fx:id="cipherTextTA" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" wrapText="true" />
                   <TextArea fx:id="decipherTextTA" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" wrapText="true" />
                </children>

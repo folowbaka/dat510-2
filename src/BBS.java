@@ -12,6 +12,10 @@ public class BBS {
         this.m=P*Q;
     }
 
+    /**
+     * Calculate one bit of the key by taking the least significant bit of the equation's result
+     * @return
+     */
     public String randomBits()
     {
         BigInteger seed=new BigInteger(""+this.seed);
@@ -22,6 +26,12 @@ public class BBS {
         int nbBits=binary.length();
         return binary.substring(nbBits-1);
     }
+
+    /**
+     * Generate the key by generating  keyLength bits
+     * @param keyLength
+     * @return
+     */
     public String randomKey(int keyLength)
     {
         String randomKey="";

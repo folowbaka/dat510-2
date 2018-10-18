@@ -36,30 +36,37 @@ public class Controller {
         this.safePrimeCB.setValue(this.safePrimeCB.getItems().get(0));
     }
 
+    /**
+     *  Method triggered when the button "Calculate Keys pairs"  is clicked
+     */
     public void calculateKeyPairs()
     {
-        System.out.println(Integer.toBinaryString(1));
+        //Get the parameters values
         int a=Integer.parseInt(aliceATF.getText());
         int b=Integer.parseInt(bobATF.getText());
         int p=Integer.parseInt((String)safePrimeCB.getValue());
         this.dih=new DIH(p);
+        //Calculate the public key for Alice and Bob
         int alicePU=dih.calculateKeyPair(a);
         int bobPU=dih.calculateKeyPair(b);
         this.alicePUTF.setText(""+alicePU);
         this.bobPUTF.setText(""+bobPU);
+        //Calculate the shared key for Alice and Bob
         int aliceSharedKey=dih.calculateSharedKey(bobPU,a);
         int bobSharedKey=dih.calculateSharedKey(alicePU,b);
+        //Look if each shared key are the same
         if(aliceSharedKey==bobSharedKey)
             kabTF.setText(""+aliceSharedKey);
 
         BBS bbs=new BBS(aliceSharedKey);
+        //Generate the new key with the BBS Generator
         String k=bbs.randomKey(10);
-        System.out.println(k);
         kTF.setText(""+(Integer.parseInt(k,2)));
         SDES sdes=new SDES();
         String plaintext=plainTextTA.getText();
         int textLength=plaintext.length();
         String cipherText="";
+        //Encrypt by block with the SDES cipher
         for(int i=0;i<textLength;i++)
         {
             String character=Integer.toBinaryString(plaintext.substring(i,i+1).getBytes()[0]);
@@ -69,6 +76,7 @@ public class Controller {
         cipherTextTA.setText(cipherText);
         int cipherTextLength=cipherText.length();
         String decipherText="";
+        //Decrypt by block the SDES ciphered text
         for(int i=0;i<cipherTextLength;i+=8)
         {
             String cipherCharacter=cipherText.substring(i,i+8);
