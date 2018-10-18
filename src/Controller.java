@@ -27,11 +27,12 @@ public class Controller {
     private TextArea cipherTextTA;
     @FXML
     private TextArea decipherTextTA;
-    private Cyclic cyclic;
+
+    private DIH dih;
 
     public void setData()
     {
-        this.safePrimeCB.getItems().addAll(Cyclic.SAFE_PRIME);
+        this.safePrimeCB.getItems().addAll(DIH.SAFE_PRIME);
         this.safePrimeCB.setValue(this.safePrimeCB.getItems().get(0));
     }
 
@@ -41,20 +42,20 @@ public class Controller {
         int a=Integer.parseInt(aliceATF.getText());
         int b=Integer.parseInt(bobATF.getText());
         int p=Integer.parseInt((String)safePrimeCB.getValue());
-        this.cyclic=new Cyclic(p);
-        int alicePU=cyclic.calculateKeyPair(a);
-        int bobPU=cyclic.calculateKeyPair(b);
+        this.dih=new DIH(p);
+        int alicePU=dih.calculateKeyPair(a);
+        int bobPU=dih.calculateKeyPair(b);
         this.alicePUTF.setText(""+alicePU);
         this.bobPUTF.setText(""+bobPU);
-        int aliceSharedKey=cyclic.calculateSharedKey(bobPU,a);
-        int bobSharedKey=cyclic.calculateSharedKey(alicePU,b);
+        int aliceSharedKey=dih.calculateSharedKey(bobPU,a);
+        int bobSharedKey=dih.calculateSharedKey(alicePU,b);
         if(aliceSharedKey==bobSharedKey)
             kabTF.setText(""+aliceSharedKey);
 
         BBS bbs=new BBS(aliceSharedKey);
         String k=bbs.randomKey(10);
         System.out.println(k);
-        kTF.setText(k);
+        kTF.setText(""+(Integer.parseInt(k,2)));
         SDES sdes=new SDES();
         String plaintext=plainTextTA.getText();
         int textLength=plaintext.length();

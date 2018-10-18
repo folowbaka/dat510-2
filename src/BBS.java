@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class BBS {
     private int seed;
     public static final int P=2011;
@@ -12,7 +14,10 @@ public class BBS {
 
     public String randomBits()
     {
-        this.seed=(int)Math.pow(this.seed,2)%m;
+        BigInteger seed=new BigInteger(""+this.seed);
+        seed=seed.pow(2);
+        seed=seed.mod(new BigInteger(""+this.m));
+        this.seed=seed.intValue();
         String binary=Integer.toBinaryString(this.seed);
         int nbBits=binary.length();
         return binary.substring(nbBits-1);
