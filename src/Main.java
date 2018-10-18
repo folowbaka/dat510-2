@@ -12,7 +12,7 @@ public class Main extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         controller.setData();
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Assgnment 2");
         primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
